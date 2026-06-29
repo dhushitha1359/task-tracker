@@ -45,7 +45,7 @@ public class Task {
     private LocalDateTime updatedAt;
 
     @NotNull(message = "projectId is required")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 

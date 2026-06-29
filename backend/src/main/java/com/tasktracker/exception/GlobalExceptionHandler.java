@@ -37,8 +37,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneric(Exception ex) {
-        ApiError error = new ApiError(500, "Internal Server Error",
-                "Something went wrong. Please try again.", null);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
-    }
+
+    ex.printStackTrace();   // <-- ADD THIS LINE
+
+    ApiError error = new ApiError(
+            500,
+            "Internal Server Error",
+            ex.getMessage(),    // <-- temporarily return the real message
+            null
+    );
+
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+}
 }
